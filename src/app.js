@@ -2,7 +2,9 @@ const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
 const geocode  = require('./geocode');
-const forecast = require('./forecast');const app = express();
+const forecast = require('./forecast');
+const app = express();
+const port = process.env.PORT || 3000;
 //Define path for express config
 console.log(__dirname);
 console.log(path.join(__dirname,'../public'));
@@ -17,7 +19,7 @@ app.use(express.static(path.join(__dirname,'../public')));
 
 app.get('',(req,res) => {
     res.render('index',{
-        title:'weather App',
+        title:'Weather',
         name:'Bhavjot Singh'
     })
 })
@@ -97,6 +99,6 @@ app.get('*',(req,res) => {
 
 
 //Starting server
-app.listen(3000, () => {
-    console.log('Hey there Server is up at port 3000');
+app.listen(port, () => {
+    console.log('Hey there Server is up at port ' + port);
 });
